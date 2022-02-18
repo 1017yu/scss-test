@@ -1,7 +1,35 @@
-$color: royalblue;
+// 변수 $ (Variables) 
+$color: royalblue; // 전역 변수
+
+@mixin center { // 재활용 (Mixin)
+  display: flex;
+  justify-content: center; // 수평정렬
+  align-items: center; // 수직정렬
+}
+
+@mixin box($size: 100px) { // $size 매개변수 값이 없을 때,Default값 100px 적용
+  width: $size;
+  height: $size;
+  background-color: tomato;
+}
 
 .container {
+  $size: 200px; // 지역 변수
   h1 {
     color: $color;
+    top: $size;
+  }
+  .item-2 {
+    @include center;
+    @include box(100px);
   }
 }
+
+// 상위 선택자 참조
+
+.fs {
+  &-small { font-size: 12px; } // .fs-small
+  &-medium { font-size: 14px; } // .fs-medium
+  &-large { font-size: 16px; } // .fs-large
+}
+
